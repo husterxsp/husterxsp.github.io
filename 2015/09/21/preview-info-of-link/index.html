@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="CSS,JavaScript," />
+  <meta name="keywords" content="HTML,meta," />
 
 
 
@@ -37,15 +37,23 @@
   <link rel="shorticon icon" type="image/x-icon" href="../../../..//favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="demo :  http://codepen.io/husterxsp/pen/zvOyjz主要是利用了z-index层级来实现效果，其中需要注意的是，z-index只适用于定位元素，即定义了 ‘position’为非static的元素，另外有关分层的显示可参看 w3chelp分层的显示">
+<meta name="description" content="在写好一个页面，用qq发送链接时，预览信息可能是这样的
+它的预览信息，并不是自己想要的效果。但是想到qq空间的分享，可以预览信息，看了一下qq空间的代码
+发现它是itemprop属性来定义一些预览信息的。亲测有效。但是这样写，好像qq消息预览时只会显示第一次发出消息时的预览消息，也就是说，如果你已经qq发送了一个链接，接下来，你再修改meta里对应的信息，发送出去的链接信息预览仍然是第一次的时候的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="仿照淘宝ued的一个菜单栏">
-<meta property="og:url" content="http://husterxsp.github.io/2015/08/29/a-menu-like-taobaoued/index.html">
+<meta property="og:title" content="meta标签自定义链接预览信息">
+<meta property="og:url" content="http://husterxsp.github.io/2015/09/21/preview-info-of-link/index.html">
 <meta property="og:site_name" content="on the way">
-<meta property="og:description" content="demo :  http://codepen.io/husterxsp/pen/zvOyjz主要是利用了z-index层级来实现效果，其中需要注意的是，z-index只适用于定位元素，即定义了 ‘position’为非static的元素，另外有关分层的显示可参看 w3chelp分层的显示">
+<meta property="og:description" content="在写好一个页面，用qq发送链接时，预览信息可能是这样的
+它的预览信息，并不是自己想要的效果。但是想到qq空间的分享，可以预览信息，看了一下qq空间的代码
+发现它是itemprop属性来定义一些预览信息的。亲测有效。但是这样写，好像qq消息预览时只会显示第一次发出消息时的预览消息，也就是说，如果你已经qq发送了一个链接，接下来，你再修改meta里对应的信息，发送出去的链接信息预览仍然是第一次的时候的">
+<meta property="og:image" content="http://i.imgur.com/ELnEf9P.png">
+<meta property="og:image" content="http://i.imgur.com/W6WS03b.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="仿照淘宝ued的一个菜单栏">
-<meta name="twitter:description" content="demo :  http://codepen.io/husterxsp/pen/zvOyjz主要是利用了z-index层级来实现效果，其中需要注意的是，z-index只适用于定位元素，即定义了 ‘position’为非static的元素，另外有关分层的显示可参看 w3chelp分层的显示">
+<meta name="twitter:title" content="meta标签自定义链接预览信息">
+<meta name="twitter:description" content="在写好一个页面，用qq发送链接时，预览信息可能是这样的
+它的预览信息，并不是自己想要的效果。但是想到qq空间的分享，可以预览信息，看了一下qq空间的代码
+发现它是itemprop属性来定义一些预览信息的。亲测有效。但是这样写，好像qq消息预览时只会显示第一次发出消息时的预览消息，也就是说，如果你已经qq发送了一个链接，接下来，你再修改meta里对应的信息，发送出去的链接信息预览仍然是第一次的时候的">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -55,7 +63,7 @@
   };
 </script>
 
-  <title> 仿照淘宝ued的一个菜单栏 | on the way </title>
+  <title> meta标签自定义链接预览信息 | on the way </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -172,7 +180,7 @@
           
           
             
-              仿照淘宝ued的一个菜单栏
+              meta标签自定义链接预览信息
             
           
         </h1>
@@ -181,8 +189,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-08-29T11:24:02+08:00" content="2015-08-29">
-            2015-08-29
+          <time itemprop="dateCreated" datetime="2015-09-21T11:09:49+08:00" content="2015-09-21">
+            2015-09-21
           </time>
         </span>
 
@@ -191,8 +199,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="../../../../categories/CSS/" itemprop="url" rel="index">
-                  <span itemprop="name">CSS</span>
+                <a href="../../../../categories/HTML/" itemprop="url" rel="index">
+                  <span itemprop="name">HTML</span>
                 </a>
               </span>
 
@@ -208,7 +216,7 @@
             <span class="post-comments-count">
               &nbsp; | &nbsp;
               <a href="#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/29/a-menu-like-taobaoued/" itemprop="commentsCount"></span>
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/21/preview-info-of-link/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -222,7 +230,12 @@
       
 
       
-        <span itemprop="articleBody"><p>demo :  <a href="http://codepen.io/husterxsp/pen/zvOyjz" title="http://codepen.io/husterxsp/pen/zvOyjz" target="_blank" rel="external">http://codepen.io/husterxsp/pen/zvOyjz</a><br>主要是利用了z-index层级来实现效果，其中需要注意的是，z-index只适用于定位元素，即定义了 ‘position’为非static的元素，另外有关分层的显示可参看 <a href="http://www.w3help.org/zh-cn/kb/013/" target="_blank" rel="external">w3chelp分层的显示</a></p>
+        <span itemprop="articleBody"><a id="more"></a>
+<p>在写好一个页面，用qq发送链接时，预览信息可能是这样的<br><img src="http://i.imgur.com/ELnEf9P.png" alt=""></p>
+<p>它的预览信息，并不是自己想要的效果。但是想到qq空间的分享，可以预览信息，看了一下qq空间的代码<br><img src="http://i.imgur.com/W6WS03b.png" alt=""></p>
+<p>发现它是itemprop属性来定义一些预览信息的。亲测有效。但是这样写，好像qq消息预览时只会显示第一次发出消息时的预览消息，也就是说，如果你已经qq发送了一个链接，接下来，你再修改meta里对应的信息，发送出去的链接信息预览仍然是第一次的时候的</p>
+<p>另外还有一种办法是<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">div</span> style=<span class="string">"display: none"</span>&gt;</span><br><span class="line">    &lt;<span class="tag">img</span> src=<span class="string">"img/logo.png"</span> alt=<span class="string">""</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将上面的这段代码放到紧随body之后，便可以在预览显示logo.png。此方法在微信分享链接时也是有效的，另外微信JSSDK可以自定义分享信息，但是好像需要微信认证，没有试过。有兴趣的话可以参看<a href="http://www.huceo.com/post/414.html" target="_blank" rel="external">怎么使用微信JSSDK的自定义分享功能</a></p>
 </span>
       
     </div>
@@ -231,9 +244,9 @@
       
         <div class="post-tags">
           
-            <a href="../../../../tags/CSS/" rel="tag">#CSS</a>
+            <a href="../../../../tags/HTML/" rel="tag">#HTML</a>
           
-            <a href="../../../../tags/JavaScript/" rel="tag">#JavaScript</a>
+            <a href="../../../../tags/meta/" rel="tag">#meta</a>
           
         </div>
       
@@ -242,13 +255,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="../../../09/21/preview-info-of-link/" rel="prev">meta标签自定义链接预览信息</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="../../07/solve-Access-Control-Allow-Origin/" rel="next">跨域问题解决</a>
+              <a href="../../../08/29/a-menu-like-taobaoued/" rel="next">仿照淘宝ued的一个菜单栏</a>
             
           </div>
         </div>
@@ -277,8 +288,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/08/29/a-menu-like-taobaoued/"
-                   data-title="仿照淘宝ued的一个菜单栏" data-url="http://husterxsp.github.io/2015/08/29/a-menu-like-taobaoued/">
+              <div class="ds-thread" data-thread-key="2015/09/21/preview-info-of-link/"
+                   data-title="meta标签自定义链接预览信息" data-url="http://husterxsp.github.io/2015/09/21/preview-info-of-link/">
               </div>
             
           </div>
