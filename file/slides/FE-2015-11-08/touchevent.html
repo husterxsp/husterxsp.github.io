@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>touch事件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style type="text/css">
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: #aaa;
+        left: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+    var box = document.getElementById("box");
+    drag(box);
+
+    function drag(element) {
+        var startX, startY, offsetX, offsetY, elementX = 0,
+            elementY = 0;
+        element.addEventListener("touchstart", function(e) {
+            startX = e.changedTouches[0].clientX;
+            startY = e.changedTouches[0].clientY;
+            window.addEventListener("touchmove", touchmove);
+            window.addEventListener("touchend", touchend);
+        });
+
+        function touchmove(e) {
+            offsetX = e.changedTouches[0].clientX - startX;
+            offsetY = e.changedTouches[0].clientY - startY;
+            move(element, elementX + offsetX, elementY + offsetY);
+        }
+
+        function touchend(e) {
+            elementX += e.changedTouches[0].clientX - startX;
+            elementY += e.changedTouches[0].clientY - startY;
+            window.removeEventListener('touchmove', touchmove);
+            window.removeEventListener('touchend', touchend);
+        }
+
+        function move(els, x, y) {
+            element.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+        }
+    }
+    </script>
+</body>
+
+</html>
