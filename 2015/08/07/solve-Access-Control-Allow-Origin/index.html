@@ -37,15 +37,15 @@
   <link rel="shorticon icon" type="image/x-icon" href="../../../..//favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the requested resource. Origin &amp;#39;null&amp;#39; is therefore not allowed access. ，有几种解决办法如下：">
+<meta name="description" content="跨域问题原因：浏览器的同源策略，即：同domain（或ip）, 同端口, 同协议视为同一个域, 一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。 协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域问题解决">
 <meta property="og:url" content="http://husterxsp.github.io/2015/08/07/solve-Access-Control-Allow-Origin/index.html">
 <meta property="og:site_name" content="on the way">
-<meta property="og:description" content="协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the requested resource. Origin &amp;#39;null&amp;#39; is therefore not allowed access. ，有几种解决办法如下：">
+<meta property="og:description" content="跨域问题原因：浏览器的同源策略，即：同domain（或ip）, 同端口, 同协议视为同一个域, 一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。 协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域问题解决">
-<meta name="twitter:description" content="协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the requested resource. Origin &amp;#39;null&amp;#39; is therefore not allowed access. ，有几种解决办法如下：">
+<meta name="twitter:description" content="跨域问题原因：浏览器的同源策略，即：同domain（或ip）, 同端口, 同协议视为同一个域, 一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。 协议，子域名，端口号等不同，均会导致跨域问题 No &amp;#39;Access-Control-Allow-Origin&amp;#39; header is present on the">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -56,6 +56,8 @@
 </script>
 
   <title> 跨域问题解决 | on the way </title>
+  <script src="http://apps.bdimg.com/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -222,7 +224,7 @@
       
 
       
-        <span itemprop="articleBody"><p> 协议，子域名，端口号等不同，均会导致跨域问题 <code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br> ，有几种解决办法如下：<br><a id="more"></a></p>
+        <span itemprop="articleBody"><p>跨域问题原因：浏览器的同源策略，即：同domain（或ip）, 同端口, 同协议视为同一个域, 一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br> 协议，子域名，端口号等不同，均会导致跨域问题 <code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br> ，有几种解决办法如下：<br><a id="more"></a></p>
 <ul>
 <li>使用代理：如果想访问不同域名下的api接口文件，可以访问同域名下的php文件，然后，该同域名下的php文件再来访问那个不同域名下的文件，即通过后端代理。</li>
 </ul>
@@ -233,13 +235,29 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="string">'&#123;"a":1,"b":3&#125;'</span>;</span><br><span class="line"><span class="variable">$jsonp</span> = <span class="variable">$_GET</span>[<span class="string">'callback'</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$jsonp</span>.<span class="string">'('</span>.<span class="variable">$data</span>.<span class="string">')'</span>;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>原生js实现如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>XHR<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callfunc</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">"http:husterxsp.sinaapp.com/jsonp_js.php?&amp;jsonp=callfunc"</span>;</span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.setAttribute(<span class="string">'src'</span>, url);</span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(script); </span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$jsonp = $_GET['jsonp'];</span><br><span class="line">$data = '&#123;<span class="string">"a"</span>:<span class="number">1</span>,<span class="string">"b"</span>:<span class="number">3</span>&#125;';</span><br><span class="line">$<span class="literal">result</span> = $jsonp.'('.$data.')';</span><br><span class="line">echo $<span class="literal">result</span>;</span><br></pre></td></tr></table></figure>
+<p>jsonp实现方式简单来说，就是通过javascript加载php，php返回一个带有所需数据的函数。<br>jsonp实现跨域的原理：script标签可以跨域(大概浏览器认为这个是安全的是因为直接引入一个文件，不会对服务器的文件的安全性有影响，但ajax可能会发送不利于服务器安全性的数据所以不能跨域？)，类似的可以跨域的还有link, img, iframe标签等等(有src及href属性)</p>
 <ul>
-<li><p>HTML5提供的XMLHttpRequest实现跨域的功能，但IE的低版本会不支持，方法很简单，只需在后端php代码中添加：<code>header(&#39;Access-Control-Allow-Origin:*&#39;);</code>或者<code>header(&#39;Access-Control-Allow-Methods:POST,GET&#39;);</code>等等。而前端不需要做任何改动。</p>
+<li><p>跨域资源共享CORS(Cross Origin Resource Sharing)：在后端php代码中添加：<code>header(&#39;Access-Control-Allow-Origin:*&#39;);</code>或者<code>header(&#39;Access-Control-Allow-Methods:POST,GET&#39;);</code>等等。浏览器会发送一个跨域的HTTP请求，请求的响应必须包含一个Access- Control-Allow-Origin的HTTP响应头，该响应头声明了请求域的可访问权限。</p>
 </li>
 <li><p>另外，在调试的时候，可以在chrome属性，目标 ，添加 —disable-web-securit， 即可调试。</p>
 </li>
 </ul>
-<p>参考： <a href="http://www.imooc.com/learn/250" target="_blank">http://www.imooc.com/learn/250</a></p>
+<hr>
+<p>以上是前端页面请求服务器获取数据的解决办法，另外一种就是页面与页面之间的跨域。解决办法：</p>
+<ul>
+<li>通过document.domain来跨子域</li>
+<li>通过window.name来进行跨域</li>
+<li>通过window.postMessage</li>
+<li>window.navigator</li>
+<li>location.hash</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" title="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy</a></li>
+<li><a href="http://blog.csdn.net/kongjiea/article/details/38867531" title="http://blog.csdn.net/kongjiea/article/details/38867531" target="_blank" rel="external">http://blog.csdn.net/kongjiea/article/details/38867531</a></li>
+<li><a href="http://blog.csdn.net/kongjiea/article/details/44201021" title="http://blog.csdn.net/kongjiea/article/details/44201021" target="_blank" rel="external">http://blog.csdn.net/kongjiea/article/details/44201021</a></li>
+<li><a href="http://harttle.com/2015/10/10/cross-origin.html?utm_source=tuicool&amp;utm_medium=referral" title="http://harttle.com/2015/10/10/cross-origin.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://harttle.com/2015/10/10/cross-origin.html?utm_source=tuicool&amp;utm_medium=referral</a></li>
+</ul>
 </span>
       
     </div>
@@ -333,7 +351,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../../../..//archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -423,8 +441,8 @@
     <footer id="footer" class="footer">
       <div class="footer-inner"> <div class="copyright" >
   
-  &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>

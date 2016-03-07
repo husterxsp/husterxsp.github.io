@@ -56,6 +56,8 @@
 </script>
 
   <title> on the way </title>
+  <script src="http://apps.bdimg.com/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -400,7 +402,7 @@
 
       
         
-          <p> 协议，子域名，端口号等不同，均会导致跨域问题 <code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br> ，有几种解决办法如下：<br>
+          <p>跨域问题原因：浏览器的同源策略，即：同domain（或ip）, 同端口, 同协议视为同一个域, 一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br> 协议，子域名，端口号等不同，均会导致跨域问题 <code>No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br> ，有几种解决办法如下：<br>
           <div class="post-more-link text-center">
             <a class="btn" href="2015/08/07/solve-Access-Control-Allow-Origin/#more" rel="contents">
               阅读全文 &raquo;
@@ -1092,7 +1094,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1171,8 +1173,8 @@
     <footer id="footer" class="footer">
       <div class="footer-inner"> <div class="copyright" >
   
-  &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>
