@@ -37,15 +37,15 @@
   <link rel="shorticon icon" type="image/x-icon" href="../../../..//favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="在代码中 ./代表当前路径 ../代表父级路径，相信大家都很清楚了，我想记录的是 “/”， 这个符号表示的是根目录，如果是在本地测试，比如：&amp;lt;img src=&amp;quot;/images/hello.jpg&amp;quot;&amp;gt;如果这个项目在G盘的话，那么它就会用G：/images/hello.jpg 去寻找资源，所以有时候就可能违背我们的原意了。">
+<meta name="description" content="闭包，作用域链，原型链，继承">
 <meta property="og:type" content="article">
-<meta property="og:title" content="相对路径">
-<meta property="og:url" content="http://husterxsp.github.io/2015/06/22/relative-url/index.html">
+<meta property="og:title" content="js的一些基础知识">
+<meta property="og:url" content="http://husterxsp.github.io/2016/03/09/review-basic-knowledge-of-js/index.html">
 <meta property="og:site_name" content="on the way">
-<meta property="og:description" content="在代码中 ./代表当前路径 ../代表父级路径，相信大家都很清楚了，我想记录的是 “/”， 这个符号表示的是根目录，如果是在本地测试，比如：&amp;lt;img src=&amp;quot;/images/hello.jpg&amp;quot;&amp;gt;如果这个项目在G盘的话，那么它就会用G：/images/hello.jpg 去寻找资源，所以有时候就可能违背我们的原意了。">
+<meta property="og:description" content="闭包，作用域链，原型链，继承">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相对路径">
-<meta name="twitter:description" content="在代码中 ./代表当前路径 ../代表父级路径，相信大家都很清楚了，我想记录的是 “/”， 这个符号表示的是根目录，如果是在本地测试，比如：&amp;lt;img src=&amp;quot;/images/hello.jpg&amp;quot;&amp;gt;如果这个项目在G盘的话，那么它就会用G：/images/hello.jpg 去寻找资源，所以有时候就可能违背我们的原意了。">
+<meta name="twitter:title" content="js的一些基础知识">
+<meta name="twitter:description" content="闭包，作用域链，原型链，继承">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title> 相对路径 | on the way </title>
+  <title> js的一些基础知识 | on the way </title>
   <script src="http://apps.bdimg.com/libs/highlight.js/8.9.1/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -174,7 +174,7 @@
           
           
             
-              相对路径
+              js的一些基础知识
             
           
         </h1>
@@ -183,26 +183,11 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-22T13:16:30+08:00" content="2015-06-22">
-            2015-06-22
+          <time itemprop="dateCreated" datetime="2016-03-09T09:25:17+08:00" content="2016-03-09">
+            2016-03-09
           </time>
         </span>
 
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="../../../../categories/JavaScript/" itemprop="url" rel="index">
-                  <span itemprop="name">JavaScript</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
         
 
         
@@ -210,7 +195,7 @@
             <span class="post-comments-count">
               &nbsp; | &nbsp;
               <a href="#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/22/relative-url/" itemprop="commentsCount"></span>
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/review-basic-knowledge-of-js/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -224,8 +209,38 @@
       
 
       
-        <span itemprop="articleBody"><a id="more"></a>
-<p>在代码中 ./代表当前路径 ../代表父级路径，相信大家都很清楚了，我想记录的是 “/”， 这个符号表示的是根目录，如果是在本地测试，比如：<br><code>&lt;img src=&quot;/images/hello.jpg&quot;&gt;</code><br>如果这个项目在G盘的话，那么它就会用G：/images/hello.jpg 去寻找资源，所以有时候就可能违背我们的原意了。</p>
+        <span itemprop="articleBody"><p>闭包，作用域链，原型链，继承<br><a id="more"></a></p>
+<h3 id="作用域链">作用域链</h3><p>指向变量对象的指针列表，只引用但不实际包含变量对象。一般，函数执行完毕之后，局部活动对象就会被销毁，内存中仅保留全局作用域，但闭包却不同。</p>
+<h3 id="闭包">闭包</h3><p>闭包是一个函数，它能使用函数定义外的变量，有权访问另一个函数作用域中的变量。使用全局变量就是一个简单的闭包的实例。创建闭包的常见方式就是在一个函数内部创建另外一个函数。<br>原理： 内部函数的作用域链包含外部函数的作用域链。外部函数执行完毕后其活动对象不会被销毁，因为内部匿名函数的作用域链仍然在引用这个活动对象。也就是说，当外部函数返回后，其执行环境作用域链被销毁，但活动对象仍保留在内存，直到内部匿名函数被销毁。</p>
+<p>缺陷：闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包。</p>
+<h3 id="原型链">原型链</h3><p>实现继承的主要方法，基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>构造函数，原型，实例的关系：每一个构造函数都有一个原型对象，原型对象包含一个指向构造函数的指针，实例包含一个指向原型对象的指针。<br>实现：重写原型对象，用父对象的一个实例代替子对象的原型。<br>原型链的末端：Object。所有函数的默认原型都是Object的实例。<br>确定原型和实例的关系：instanceof/isPrototypeOf<br>通过原型链继承的问题：</p>
+<ul>
+<li>包含引用类型的值，一个实例修改，其他实例也会被修改。</li>
+<li>创建子类实例时无法向超类型的构造函数传递参数。<br>构造函数继承： 则可以解决以上问题。但构造函数的问题是方法都在构造函数内部定义，无法函数复用。而且，超类中定义的方法在子类中是不可见的。<br>组合继承：通过原型链实现对原型属性和方法的继承，通过构造函数实现对实例属性的继承。但组合继承的超类型在使用过程中会被调用两次；一次是创建子类型的时候，另一次是在子类型构造函数的内部。<br>寄生组合继承：解决了两次调用的问题。</li>
+</ul>
+<h3 id="继承">继承</h3><ul>
+<li><p>原型继承</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.color;</span><br><span class="line">&#125;</span><br><span class="line">Sub.prototype = <span class="keyword">new</span> Super();</span><br><span class="line"><span class="comment">//使用字面量添加方法，会覆盖上面的prototype,使继承无效</span></span><br><span class="line">getColor: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造函数继承：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组合继承</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line">Super.prototype.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">    Super.call(<span class="keyword">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = <span class="keyword">new</span> Super();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test = <span class="keyword">new</span> Sub(<span class="number">111</span>);</span><br><span class="line">test.sayName();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原型式继承</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span><span class="params">(o)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span><span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line">    F.prototype = o;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>基于已有的对象创建新对象，同时还不必因此创建自定义类型。ES5的object.create()方法规范化了原型式继承，接受两个参数，一个作为新对象原型的对象，一个为新对象定义额外属性的对象，传入一个参数时与上述object行为相同。</p>
+<ul>
+<li><p>寄生式继承</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">(o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">clone</span> = object(o);</span><br><span class="line">    <span class="keyword">clone</span>.run = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        alert(<span class="string">"hello"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">clone</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>寄生组合式继承</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function Super(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line">Super.<span class="keyword">prototype</span>.sayName = function() &#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Sub(name) &#123;</span><br><span class="line">    Super.call(this, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inheritPrototype(<span class="sub"><span class="keyword">sub</span>, super);</span></span><br><span class="line"></span><br><span class="line">function inheritPrototype(<span class="sub"><span class="keyword">sub</span>, super) &#123;</span></span><br><span class="line">    var <span class="keyword">prototype</span> = object(super.<span class="keyword">prototype</span>);</span><br><span class="line">    <span class="keyword">prototype</span>.constructor = <span class="sub"><span class="keyword">sub</span>;</span></span><br><span class="line">    <span class="sub"><span class="keyword">sub</span>.prototype = prototype;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </span>
       
     </div>
@@ -243,13 +258,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="../../27/solve-for-loop-bind-event/" rel="prev">js for循环绑定问题解决</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="../call-apply-bind/" rel="next"> js function call,apply,bind方法</a>
+              <a href="../../08/about-angularjs/" rel="next">关于angular的一些基础知识</a>
             
           </div>
         </div>
@@ -278,8 +291,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/06/22/relative-url/"
-                   data-title="相对路径" data-url="http://husterxsp.github.io/2015/06/22/relative-url/">
+              <div class="ds-thread" data-thread-key="2016/03/09/review-basic-knowledge-of-js/"
+                   data-title="js的一些基础知识" data-url="http://husterxsp.github.io/2016/03/09/review-basic-knowledge-of-js/">
               </div>
             
           </div>
@@ -393,7 +406,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">1.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">3.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">4.</span> <span class="nav-text">继承</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
