@@ -24,6 +24,7 @@ fi
 # 获取本机IP
 # 由于本机IP可能活获取到好几个，这个用 grep '133' 进行了过滤，可以自己根据自己的IP需要进行过滤
 # grep -v '169' 则就是不取含有'169'的
+# 注意，变量名和等号之间不能有空格
 addr=`/sbin/ifconfig|grep inet|grep -v 127.0.0.1|grep -v inet6|grep '133'|awk '{print $2}'|tr -d "addr:"`
 
 if  [ ! -n "$addr" ] ;then
@@ -57,6 +58,8 @@ done
     sed -i "s/mongodb:\/\/.*:27017/mongodb:\/\/${addr}:27017/g" $str
 ```
 具体原因可以参看 [sed: -i may not be used with stdin on Mac OS X](http://stackoverflow.com/questions/21242932/sed-i-may-not-be-used-with-stdin-on-mac-os-x)
+
+另外，在ubuntu上运行的时候，因为数组的原因，会报错 ```Syntax error: "(" unexpected```，参考[网上的解答](http://bbs.csdn.net/topics/390267545)用  /bin/bash 来运行就可以了。（具体原因等以后对shell更熟了再补充好了。。）
 
 更多的shell 命令学习 [Linux 命令大全](http://www.runoob.com/linux/linux-command-manual.html)
 
