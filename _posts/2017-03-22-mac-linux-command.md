@@ -81,5 +81,33 @@ tar -xzvf test.tar.gz
 
 还有zip
 
+### mv 文件重命名
+
+若a、b都是文件名，那当时直接将a重命名为b了，若b是目录就把a直接移入b(b不存在会新建)。
+```
+mv a b
+```
+
+还有rename，ubuntu可以用，但是[mac好像没有rename](https://discussions.apple.com/thread/1760288?start=0&tstart=0)
+，在ubuntu输入`man rename` 可以看到一些使用说明。例如执行
+```
+//利用正则，把文件名中的AA替换成aa 
+rename "s/AA/aa/" *
+```
+
+### chmod 777 添加权限
+
+之前有遇到无权访问本地mongodb数据库的问题，随手`chmod 777 -R /data`就可以解决。需要注意 `-R`不能忘记加了，它代表 —recursive 递归整个目录修改权限。
+
+7的含义：r=4，w=2，x=1，r表示可读取，w表示可写入，x表示可执行。7即代表可读、写、执行。
+
+777的含义：分别代表文件拥有者、群组、其他用户的权限。
+
+chmod 777 就代表所有人都可读、写、执行了。执行`ll` 看下权限
+![](/img/post/2017-03-22-mac-linux-command-2.png)
+
+可看到上图最左侧一列即代表权限，这一列有11位，第一位字母表示文件类型，d是目录文件，l是链接文件，-是普通文件。中间9位就代表文件权限的那几位了。最后一位ubuntu上没有，[查了一下具体解释戳这里](https://www.zhihu.com/question/25069561)。图里还有个wheel，[查了一下](http://blog.csdn.net/cbbbc/article/details/51712797)大概是管理员用户的意思。
+
+
 [更多Linux命令>>](http://www.runoob.com/linux/linux-command-manual.html)
 
