@@ -15,7 +15,7 @@ tags:
 
 查找所有后缀是.js的文件 
 ```
-find . -name *.js
+find . -name "*.js"
 ```
 查找所有.DS_Store 并删除
 ```
