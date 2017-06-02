@@ -30,19 +30,19 @@ Physijs加载场景之后，加载的物体都有默认的向Y轴负方向大小
 
 ### 改变物体的位置
 
-通过 Physijs 创建的物体，不能直接修改position和rotation等值，如需修改需要设置 ```mesh.__dirtyPosition = true;```。
+通过 Physijs 创建的物体，不能直接修改position和rotation等值，如需修改需要设置 `mesh.__dirtyPosition = true;`。
 
 ### 穿过可得分物体
 
 如果用Three来创建物体的话是可以直接穿过的，但是这里还需要用Physijs来处理一些碰撞检测，参考 [Ghost Objects](https://github.com/chandlerprall/Physijs/issues/82) 和 [Ball go across ground](https://github.com/chandlerprall/Physijs/issues/102) 的解释，可以设置
-``` mesh._physijs.collision_flags = 4; ``` 来添加一个既可以穿过又可以检测到碰撞的物体。但是只添加这段代码的话，物体也会直接穿过地面掉下去的。还需要设置
+` mesh._physijs.collision_flags = 4; ` 来添加一个既可以穿过又可以检测到碰撞的物体。但是只添加这段代码的话，物体也会直接穿过地面掉下去的。还需要设置
 ```JavaScript
    shape.addEventListener('ready', function () {
         // 不是很懂。。
         // https://github.com/chandlerprall/Physijs/wiki/Collisions
         this.setCcdMotionThreshold(0.1);
         this.setCcdSweptSphereRadius(1);
-    
+
         // 设置线速度和角速度为 0
         this.setLinearFactor(new THREE.Vector3(0, 0, 0));
         this.setAngularFactor(new THREE.Vector3(0, 0, 0));

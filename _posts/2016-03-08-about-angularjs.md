@@ -49,7 +49,7 @@ function $RootScopeProvider() {
 $rootScope： 根作用域
 
 ### 关于Controller
- 
+
 + 不要在controller里操作DOM,很耗时，应该交给指令
 + 主要用于初始化时的数据绑定。
 
@@ -64,6 +64,7 @@ service的功能是抽取contoller里的公共逻辑
 + 自定义service避免$开头
 
 ### factory,service,provider的区别：
+
 ```javascript
 function provider(name, provider_) {
   assertNotHasOwnProperty(name, 'service');
@@ -84,6 +85,7 @@ function service(name, constructor) {
   }]);
 }
 ```
+
 最终都是调用provider，只是写法不同
 
 ### 关于directive
@@ -107,6 +109,7 @@ function service(name, constructor) {
 	+ 如果自定义compile函数，那么自定义的link函数将无效，因为compile函数应该返回一个link函数供后续处理。
 
 ### 启动过程
+
 ```javascript
 (function(window, document, undefined) {
   'use strict';
@@ -130,6 +133,7 @@ function service(name, constructor) {
 
 })(window, document);
 ```
+
 + 自执行函数，加载完后就调用。
 + window.angular.bootstrap检测是否多次导入angular
 + ng-app自动启动
