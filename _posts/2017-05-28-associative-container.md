@@ -13,7 +13,7 @@ tags:
 2. 在使用数组下标时，通常将其定义为size_t类型，size_t是一种机器相关的无符号类型，它被设计得足够大以便能表示内存中任意对象的大小。
 3. map中元素是一个pair类型的对象，该对象用first保存key，用second保存value。
 4. 对于有序容器，关键字类型必须定义元素比较的方法，默认用<比较关键字，可以加入自定义的比较函数。如果map的key没法用<比较又没自定义比较函数，则会报错。map根据key,value排序，参考 [C++ STL中Map的按Key排序和按Value排序](http://blog.csdn.net/iicy266/article/details/11906189) ，map按value排序需要先转换为vector。
-```C++
+```cpp
 struct compareByKey {
     bool operator()(const string& k1, const string& k2) const {
         return k1.length() < k2.length();

@@ -18,27 +18,27 @@ tags:
 
 + accumulate()，前两个参数指定需要求和的范围，第三个参数决定使用的加法运算符和返回值类型。
 如下的代码则是分别对整数和字符串求和。需要注意对字符串求和时显式的创建了string，若是直接传入空串“”会出错。因为对于空串，用于保存的对象的类型是 const char* ，它没有 + 运算符。
-```C++
-int sum = accumulate(v.begin()， v.end()， 0);
-string sum = accumulate(v.begin()， v.end()， string(""));
+```cpp
+int sum = accumulate(v.begin(), v.end(), 0);
+string sum = accumulate(v.begin(), v.end(), string(""));
 // error: const char* 上未定义+运算符
-string sum = accumulate(v.begin()， v.end()， "");
+string sum = accumulate(v.begin(), v.end(), "");
 ```
 
 + equal()，用于比较两序列是否相等
-```C++
-equal(v1.begin()， v1.end()， v2.begin());
+```cpp
+equal(v1.begin(), v1.end(), v2.begin());
 ```
 
 #### 写容器算法
 
 + fill()，对序列重新赋值。fill_n()，对迭代器之后的n个元素赋值。
-```C++
-fill(v.begin()， v.end()， 0);
-fill_n(v.begin()， n， 0);
+```cpp
+fill(v.begin(), v.end(), 0);
+fill_n(v.begin(), n, 0);
 ```
 + back_inserter()，插入迭代器。接受一个容器的引用，返回与容器绑定的插入迭代器。通过该迭代器赋值时，会调用push_back()插入元素。
-```C++
+```cpp
 vector<int> v;
 auto it = back_inserter(v);
 *it = 1;
@@ -48,11 +48,11 @@ auto it = back_inserter(v);
 #### 重排序算法
 
 + sort()，重排序。unique()，使重复的元素出现在vector开始部分。
-```C++
-sort(v.begin()， v.end());
+```cpp
+sort(v.begin(), v.end());
 // 返回指向不重复区域之后的一个位置的迭代器
-auto end_unique = unique(v.begin()， v.end());
-v.erase(end_unique， v.end());
+auto end_unique = unique(v.begin(), v.end());
+v.erase(end_unique, v.end());
 ```
 需要注意这些标准库算法是对迭代器操作，不能直接添加或删除元素。所以最后还得通过erase来操作。
 
@@ -61,11 +61,11 @@ v.erase(end_unique， v.end());
 #### 向算法传入函数
 
 谓词，可调用表达式，返回一个能用作条件的值。标准库算法用的谓词包括一元谓词和二元谓词，即接受的参数为1个或两个。接受二元谓词参数的sort用这个谓词代替 < 操作。
-```C++
-bool compareWord(const string &s1， const string &s2) {
+```cpp
+bool compareWord(const string &s1, const string &s2) {
     return s1.size() < s2.size();
 }
-sort(v.begin()， v.end()， compareWord);
+sort(v.begin(), v.end(), compareWord);
 ```
 
 stable_sort() 稳定排序，排序之后值相等的元素保持原来乱序时的顺序。
@@ -73,9 +73,9 @@ stable_sort() 稳定排序，排序之后值相等的元素保持原来乱序时
 #### lambda表达式
 
 一个可调用的代码单元，未命名的内联函数。lambda表达式的形式如下，捕获列表是lambda所在函数重定义的局部列表。lambda表达式应至少包括捕获列表和函数体。
-```C++
+```cpp
 // [捕获列表] (参数列表) -> 返回值类型 {函数体}。
-auto f = []{return 1;}。
+auto f = []{return 1;};
 ```
 #### lambda 捕获和返回
 
@@ -83,7 +83,7 @@ auto f = []{return 1;}。
 
 ##### 值捕获和引用捕获
 
-```C++
+```cpp
 size_t v1 = 1;
 // 值捕获，捕获的变量在创建时拷贝。
 auto f1 = [v1]{return v1;};
@@ -103,7 +103,7 @@ auto f2 = [&v1]{return v1;};
 
 ##### 可变lambda
 对于值捕获的变量，lambda默认不能改变其值。如要需要改变，则需要加上mutable关键字
-```
+```cpp
 auto f = [v1]()mutable{return ++v1};
 ```
 
