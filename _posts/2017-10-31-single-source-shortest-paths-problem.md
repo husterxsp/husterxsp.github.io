@@ -13,7 +13,7 @@ tags:
 采用动态规划思想的解法。要求没有负圈，如果有负圈的话就没有解了。
 对所有边进行松弛操作，共V−1次，其中 V 是图节点的数量。时间复杂度O(VE)。V和E分别是节点和边的数量。
 
-另外可以用SPFA算法进行优化，[因为松弛操作必定只会发生在最短路径前导节点松弛成功过的节点上，用一个队列记录松弛过的节点，可以避免了冗余计算。](https://zh.wikipedia.org/wiki/贝尔曼-福特算法)
+另外可以用SPFA算法进行优化，[因为松弛操作必定只会发生在最短路径前导节点松弛成功过的节点上，用一个队列记录松弛过的节点，可以避免了冗余计算。](https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E6%9B%BC-%E7%A6%8F%E7%89%B9%E7%AE%97%E6%B3%95)
 
 考虑：为什么要循环V-1次？
 [参考](http://www.wutianqi.com/?p=1912)
@@ -172,6 +172,6 @@ int main () {
 ```
 
 参考：
-+ [https://zh.wikipedia.org/wiki/贝尔曼-福特算法](https://zh.wikipedia.org/wiki/贝尔曼-福特算法)
-+ [https://zh.wikipedia.org/wiki/戴克斯特拉算法](https://zh.wikipedia.org/wiki/戴克斯特拉算法)
++ [https://zh.wikipedia.org/wiki/贝尔曼-福特算法](https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E6%9B%BC-%E7%A6%8F%E7%89%B9%E7%AE%97%E6%B3%95)
++ [https://zh.wikipedia.org/wiki/戴克斯特拉算法](https://zh.wikipedia.org/wiki/%E6%88%B4%E5%85%8B%E6%96%AF%E7%89%B9%E6%8B%89%E7%AE%97%E6%B3%95)
 + 算法导论第24章
