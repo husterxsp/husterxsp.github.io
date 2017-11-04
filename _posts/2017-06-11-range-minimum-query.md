@@ -9,7 +9,7 @@ tags:
 ---
 
 范围最小值问题（Range Minimum Query, RMQ）。给定一个数组A[1, n]，求A[i，j]的最小值。
-这里假定数组A的元素不会变化（如果变化咋办？）。
+这里假定数组A的元素不会变化（如果变化，用线段树）。
 
 [范围最值查询-维基百科](https://zh.wikipedia.org/wiki/%E8%8C%83%E5%9B%B4%E6%9C%80%E5%80%BC%E6%9F%A5%E8%AF%A2)
 

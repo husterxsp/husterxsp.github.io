@@ -7,9 +7,11 @@ catalog: true
 tags:
     - Algorithm
 ---
+
 内容参考 《算法竞赛入门经典-训练指南》
 
-二叉索引树(Binary Indexed Tree, BIT)，俗称树状数组，又以发明者命名为Fenwick树。现多用于高效计算数列的前缀和，区间和。（[维基百科的详细解释](https://zh.wikipedia.org/wiki/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)）。
+二叉索引树(Binary Indexed Tree, BIT)，俗称树状数组，又以发明者命名为Fenwick树。现多用于高效计算数列的前缀和，区间和。
+[树状数组-维基百科](https://zh.wikipedia.org/wiki/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)。
 
 ### 应用
 给定一个n个元素的数组 $$A_1，A_2...A_n$$，设计一个查询操作Query(i, j) = $$A_i + A_{i+1} + ... + A_j$$。
@@ -55,4 +57,25 @@ void add(int x, int d) {
 
 ### 练习
 
-+ [307. Range Sum Query - Mutable - leetcode](https://leetcode.com/problems/range-sum-query-mutable/#/description)
+[307. Range Sum Query - Mutable - leetcode](https://leetcode.com/problems/range-sum-query-mutable/#/description)
+
+[AC代码](https://github.com/husterxsp/leetcode/blob/master/307-range-sum-query-mutable/NumArray.cpp)
+
+### 线段树(区间树)
+线段树与二叉索引树结构类似，单次查询和更新的时间复杂度也是$$O(logn)$$。不过线段树能求解的问题范围更大一些，比如区间和，区间最值，能用二叉索引树解的一般也能用线段树解。待完善。。。
+
+上面那个leetcode 307用线段树始终超时。。。
+
+另外[327. Count of Range Sum](https://discuss.leetcode.com/topic/33734/java-segmenttree-solution-36ms) 的线段树解是在没看懂。。
+
+参考：
+
++ [http://www.cnblogs.com/xiaoyao24256/p/6590885.html](http://www.cnblogs.com/xiaoyao24256/p/6590885.html)
+
++ [http://www.cnblogs.com/TenosDoIt/p/3453089.html](http://www.cnblogs.com/TenosDoIt/p/3453089.html)
+
++ [http://blog.csdn.net/disappearedgod/article/details/24425983](http://blog.csdn.net/disappearedgod/article/details/24425983)
+
++ [线段树-维基百科](https://zh.wikipedia.org/wiki/%E7%BA%BF%E6%AE%B5%E6%A0%91_(%E5%8C%BA%E9%97%B4%E6%9F%A5%E8%AF%A2))
+
++ [统计的力量](https://wenku.baidu.com/view/0c1bbba40029bd64783e2cca.html)
