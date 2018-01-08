@@ -46,6 +46,7 @@ int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predece
             int u = edges[j]->u, v = edges[j]->v, weight = edges[j]->weight;
 
             // 此处写两次是因为 POJ 2387 是无向图
+            
             if (distance[u] > distance[v] + weight) {
                 distance[u] = distance[v] + weight;
                 flag = 1;
@@ -94,7 +95,7 @@ int main () {
 
 ### Dijkstra算法
 采用贪心思想的解法。不过条件要求比Bellman-Ford算法更严格一点，要求没有负边。从这也能看出贪心和动规的相似性。
-另外，当图中所有的边的权值都为1时，Dijkstra算法其实就退化成广度优先搜索了。
+另外，当图中所有的边的权值都为1时，Dijkstra算法其实就退化成 广度优先搜索 了。
 一般情况下，对于每一个贪心算法，几乎总是有一个对应的动态规划解，当然这种情况下，贪心的效率会更高一些。\\
 每次选取未被处理的具有最小权值的节点，然后对它的出边进行松弛操作。因而需要一个最小优先队列来保存节点集合。
 一开始想直接用`priority_queue`, 但是之后发现这个C++容器不能遍历，故不可用。
@@ -112,12 +113,12 @@ const int maxint = 1000000;
 
 using namespace std;
 void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& prev, int N, int T) {
-    // 判断是否已存入该点到S集合中
+    // 判断是否已存入该点到S集合中，其中源节点到S集合中的每个结点之间的最短路径已经被找到。
     vector<bool> s(N + 1, 0);
 
     // 外层循环总共添加N次节点
     for (int i = 1; i <= N; i++) {
-        // 找到没加进S集合的 最小的节点
+        // 从结点集V-S中选取最短路径估计最小的结点u加入S
         int u = 1, dist = maxint;
         for (int j = 1; j <= N; j++) {
             if (!s[j] && distance[j] < dist) {
@@ -125,9 +126,9 @@ void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& pre
                 dist = distance[j];
             }
         }
-        // 将该最小点加入S集合
+        // 将u加入S集合
         s[u] = 1;
-        // 更新最小点u的所有相邻点
+        // 对所有从u出发的边进行松弛
         for (int v = 1; v <= N; v++) {
             if (!s[v] && graph[u][v] != maxint) {
                 int newDist = distance[u] + graph[u][v];

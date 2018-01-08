@@ -81,29 +81,6 @@ layout: default
                     {% endif %}
                 </ul>
 
-                {% if site.commentit_username %}
-                <!-- commentit 评论框 start -->
-                    {%if page.comments %}
-                      {% assign sorted_comments = (page.comments | sort: 'date') %}
-                    {% endif %}
-                    {% for c in sorted_comments %}
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="{{ c.author.picture }}" alt="{{ c.author.displayName}}" height="73" width="73">
-                        </div>
-                        <div class="media-body">
-                            <p class="text-muted">
-                                <a href="{{ c.author.url }}">{{ c.author.displayName }}</a>on {{ c.date | date_to_string }}
-                            </p>
-                            <p>{{ c.content | newline_to_br }}</p>
-                        </div>
-                    </div>
-                        There are no comments on this post.
-                    {% endfor %}
-                    <div id="commentit"></div>
-                <!-- commentit 评论框 end -->
-                {% endif %}
-
                 {% if site.disqus_username %}
                 <!-- disqus 评论框 start -->
                 <div class="comment">
