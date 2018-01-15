@@ -67,7 +67,7 @@ Integer[][] a = {
 + fill(), 填充数据
 + sort(), 排序
 + binarySearch(), 在已排序的数组中查找
-+ toString()
++ toString()。注意Arrays.toString()是返回整个数组，而数组引用实例的toString()是输出类名和散列码
 + hashCode(), 产生数组的散列码
 
 #### 复制数组
@@ -89,7 +89,5 @@ public static native void arraycopy(Object src,  int  srcPos,
 在数组size小的时候，差别不大。但size 比较大的时候差别比较明显。
 
 另外String 数组 arraycopy比较慢，但是byte数组 arraycopy 比较快。
-
-
 
 另外arraycopy 是native 方法，这意味着它是由非java语言实现的，如C，所以性能会好一些。
