@@ -9,7 +9,15 @@ tags:
 ---
 关于图的单源最短路径的C++ 实现，以[POJ 2387:Til the Cows Come Home](http://bailian.openjudge.cn/practice/2387/) 为例AC。
 
+其他练习：[leetcode 743 network-delay-time](https://leetcode.com/problems/network-delay-time/description/)
+
 ### Bellman-Ford算法
+思路：对每条边进行松弛，每松弛一次，相当于更改了一次该结点的父亲结点，所以总共最多松弛 V-1 次。可以有负边。
+
+其他：Bellman-Ford感觉和Prim有点类似，从边来考虑。Dijkstra和 Kruskal类似，从顶点来考虑。
+
+---
+
 采用动态规划思想的解法。要求没有负圈，如果有负圈的话就没有解了。
 对所有边进行松弛操作，共V−1次，其中 V 是图节点的数量。时间复杂度O(VE)。V和E分别是节点和边的数量。
 
@@ -46,7 +54,7 @@ int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predece
             int u = edges[j]->u, v = edges[j]->v, weight = edges[j]->weight;
 
             // 此处写两次是因为 POJ 2387 是无向图
-            
+
             if (distance[u] > distance[v] + weight) {
                 distance[u] = distance[v] + weight;
                 flag = 1;
@@ -60,12 +68,12 @@ int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predece
         if (!flag) break;
     }
     // 检查是否有负圈。但是在 POJ 2387 中加入以下代码无法AC？
-//    for (Edge *edge : edges) {
-//        int u = edge->u, v = edge->v, weight = edge->weight;
-//        if (distance[u] > distance[v] + weight || distance[v] > distance[u] + weight) {
-//            return 0;
-//        }
-//    }
+    // for (Edge *edge : edges) {
+    //    int u = edge->u, v = edge->v, weight = edge->weight;
+    //    if (distance[u] > distance[v] + weight || distance[v] > distance[u] + weight) {
+    //        return 0;
+    //    }
+    // }
     return 1;
 }
 // 假设问题是从节点1到N的最短路径

@@ -88,7 +88,7 @@ layout: default
                 </div>
                 <!-- disqus 评论框 end -->
                 {% endif %}
-            </div>  
+            </div>
 
     <!-- Side Catalog Container -->
         {% if page.catalog %}
@@ -145,42 +145,45 @@ layout: default
     </div>
 </article>
 
-{% if site.commentit_username %}
-<script type="text/javascript">
-  /** CONFIGURATION VARIABLES **/
-  var commentitUsername = 'commentit_username';
-  var commentitRepo = commentitUsername + '/' + commentitUsername + '.github.io';
-  var commentitPath = '{{ page.path }}';
+<!-- 本地环境不加载评论框，太慢了  -->
+{% if jekyll.environment == "production" %}
+    {% if site.commentit_username %}
+    <script type="text/javascript">
+      /** CONFIGURATION VARIABLES **/
+      var commentitUsername = 'commentit_username';
+      var commentitRepo = commentitUsername + '/' + commentitUsername + '.github.io';
+      var commentitPath = '{{ page.path }}';
 
-  /** DON'T EDIT FOLLOWING LINES **/
-  (function() {
-      var commentit = document.createElement('script');
-      commentit.type = 'text/javascript';
-      commentit.async = true;
-      commentit.src = 'https://commentit.io/static/embed/dist/commentit.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit);
-  })();
-</script>
+      /** DON'T EDIT FOLLOWING LINES **/
+      (function() {
+          var commentit = document.createElement('script');
+          commentit.type = 'text/javascript';
+          commentit.async = true;
+          commentit.src = 'https://commentit.io/static/embed/dist/commentit.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit);
+      })();
+    </script>
+
+    {% endif %}
+
+    {% if site.disqus_username %}
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "{{site.disqus_username}}";
+        var disqus_identifier = "{{page.id}}";
+        var disqus_url = "{{site.url}}{{page.url}}";
+
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+    {% endif %}
 
 {% endif %}
-
-{% if site.disqus_username %}
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{page.id}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-{% endif %}
-
 
 {% if site.anchorjs %}
 <!-- async load function -->
