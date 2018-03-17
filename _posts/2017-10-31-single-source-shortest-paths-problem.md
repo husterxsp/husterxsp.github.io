@@ -47,7 +47,7 @@ public:
     :u(u), v(v), weight(w) {}
 };
 
-int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predecessor, int N, int T) {
+int BellmanFord(vector<Edge*> edges, vector<int>& dis, vector<int>& predecessor, int N, int T) {
     for (int i = 1; i <= N - 1; i++) {
         bool flag = 0;
         for (int j = 1; j <= T; j++) {
@@ -55,12 +55,12 @@ int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predece
 
             // 此处写两次是因为 POJ 2387 是无向图
 
-            if (distance[u] > distance[v] + weight) {
-                distance[u] = distance[v] + weight;
+            if (dis[u] > dis[v] + weight) {
+                dis[u] = dis[v] + weight;
                 flag = 1;
             }
-            if (distance[v] > distance[u] + weight) {
-                distance[v] = distance[u] + weight;
+            if (dis[v] > dis[u] + weight) {
+                dis[v] = dis[u] + weight;
                 flag = 1;
             }
         }
@@ -70,7 +70,7 @@ int BellmanFord(vector<Edge*> edges, vector<int>& distance, vector<int>& predece
     // 检查是否有负圈。但是在 POJ 2387 中加入以下代码无法AC？
     // for (Edge *edge : edges) {
     //    int u = edge->u, v = edge->v, weight = edge->weight;
-    //    if (distance[u] > distance[v] + weight || distance[v] > distance[u] + weight) {
+    //    if (dis[u] > dis[v] + weight || dis[v] > dis[u] + weight) {
     //        return 0;
     //    }
     // }
@@ -83,9 +83,9 @@ int main () {
 
     vector<Edge*> edges(T + 1);
     // 注意这个地方的初始化，如果初始化为INT_MAX，会出现加法溢出。POJ 2387中写的1-100范围有问题可忽略
-    vector<int> distance(N + 1, 1e9), predecessor(N + 1);
+    vector<int> dis(N + 1, 1e9), predecessor(N + 1);
 
-    distance[1] = 0;
+    dis[1] = 0;
 
     for (int i = 1; i <= T; i++) {
         int u, v, weight;
@@ -93,8 +93,8 @@ int main () {
         edges[i] = new Edge(u, v, weight);
     }
 
-    if (BellmanFord(edges, distance, predecessor, N, T)) {
-        cout << distance[N] << endl;
+    if (BellmanFord(edges, dis, predecessor, N, T)) {
+        cout << dis[N] << endl;
     }
 
     return 0;
@@ -112,15 +112,13 @@ int main () {
 另外还有如何处理负边的情况，对每一个边加上一个权值。。。
 
 ```cpp
-// POJ有点恶心的就是WA之后没有任何提示，以下的代码始终无法AC。。。
-// 参考可以AC的 http://blog.csdn.net/zxy_snow/article/details/6108418
 #include <iostream>
 #include <vector>
 
 const int maxint = 1000000;
 
 using namespace std;
-void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& prev, int N, int T) {
+void Dijkstra(vector<vector<int>> graph, vector<int>& dis, vector<int>& prev, int N, int T) {
     // 判断是否已存入该点到S集合中，其中源节点到S集合中的每个结点之间的最短路径已经被找到。
     vector<bool> s(N + 1, 0);
 
@@ -129,9 +127,9 @@ void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& pre
         // 从结点集V-S中选取最短路径估计最小的结点u加入S
         int u = 1, dist = maxint;
         for (int j = 1; j <= N; j++) {
-            if (!s[j] && distance[j] < dist) {
+            if (!s[j] && dis[j] < dist) {
                 u = j;
-                dist = distance[j];
+                dist = dis[j];
             }
         }
         // 将u加入S集合
@@ -139,9 +137,9 @@ void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& pre
         // 对所有从u出发的边进行松弛
         for (int v = 1; v <= N; v++) {
             if (!s[v] && graph[u][v] != maxint) {
-                int newDist = distance[u] + graph[u][v];
-                if (distance[v] > newDist) {
-                    distance[v] = newDist;
+                int newDist = dis[u] + graph[u][v];
+                if (dis[v] > newDist) {
+                    dis[v] = newDist;
                     prev[v] = u;
                 }
             }
@@ -149,7 +147,7 @@ void Dijkstra(vector<vector<int>> graph, vector<int>& distance, vector<int>& pre
     }
 }
 
-// distance数组 表示当前点到源点的最短路径
+// dis数组 表示当前点到源点的最短路径
 // prev记录当前点的前一个节点
 // N是顶点数，T是边数
 int main () {
@@ -157,24 +155,20 @@ int main () {
     cin >> T >> N;
 
     vector<vector<int>> graph(N + 1, vector<int>(N + 1, maxint));
-    vector<int> distance(N + 1, maxint), prev(N + 1);
+    vector<int> dis(N + 1, maxint), prev(N + 1);
 
-    distance[1] = 0;
+    dis[1] = 0;
 
     for (int i = 0; i < T; i++) {
-        int x, y;
-        cin >> x >> y;
-        cin >> graph[x][y];
+        int x, y, weight;
+        cin >> x >> y >> weight;
 
-        graph[y][x] = graph[x][y];
+        // 注意题目的边可能会重复，所以输入的时候处理一下
+        graph[y][x] = graph[x][y] = min(graph[x][y], weight);
     }
-    for (int i = 1; i <= N; i++) {
-        graph[i][i] = 0;
-    }
+    Dijkstra(graph, dis, prev, N, T);
 
-    Dijkstra(graph, distance, prev, N, T);
-
-    cout << distance[N] << endl;
+    cout << dis[N] << endl;
 
     return 0;
 }

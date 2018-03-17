@@ -5,8 +5,7 @@ date: 2017-03-22
 author: "Xsp"
 catalog: true
 tags:
-    - Mac
-    - Linux
+    - Mac/Linux
     - Shell
 ---
 
