@@ -14,7 +14,7 @@ tags:
 ### Bellman-Ford算法
 思路：对每条边进行松弛，每松弛一次，相当于更改了一次该结点的父亲结点，所以总共最多松弛 V-1 次。可以有负边。
 
-其他：Bellman-Ford感觉和Prim有点类似，从边来考虑。Dijkstra和 Kruskal类似，从顶点来考虑。
+其他：Bellman-Ford感觉和 Kruskal有点类似，从边来考虑。Dijkstra和 Prim类似，从顶点来考虑。
 
 ---
 
