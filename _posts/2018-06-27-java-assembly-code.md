@@ -26,7 +26,7 @@ public class Test {
 PrintAssembly 就是 “打印汇编”，开启 PrintAssembly 需要预先 开启 UnlockDiagnosticVMOptions。
 
 ```
-$ javac Test.java && java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
+$ javac Test.java && java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly Test
 ```
 直接运行会报错
 ```

@@ -2,7 +2,7 @@
 # http://jasonseifer.com/2010/04/06/rake-tutorial
 # http://elia.wordpress.com/2008/11/07/get-input-in-rake-tasks/
 # http://www.layouts-the.me/rake/2011/04/23/rake_tasks_for_jekyll/
-# 
+#
 # Asking for title
 def ask message
 print message
@@ -25,7 +25,7 @@ date: #{Time.now.strftime('%Y-%m-%d')}
 author: "Xsp"
 catalog: true
 tags:
-    - JavaScript
+    - Java
 ---
 
 EOS
