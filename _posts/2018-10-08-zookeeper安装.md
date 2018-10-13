@@ -140,6 +140,29 @@ JLine support is enabled
 WATCHER::
 
 WatchedEvent state:SyncConnected type:None path:null
+[zk: localhost:2181(CONNECTED) 1] help
+ZooKeeper -server host:port cmd args
+	stat path [watch]
+	set path data [version]
+	ls path [watch]
+	delquota [-n|-b] path
+	ls2 path [watch]
+	setAcl path acl
+	setquota -n|-b val path
+	history
+	redo cmdno
+	printwatches on|off
+	delete path [version]
+	sync path
+	listquota path
+	rmr path
+	get path [watch]
+	create [-s] [-e] path data acl
+	addauth scheme auth
+	quit
+	getAcl path
+	close
+	connect host:port
 [zk: localhost:2181(CONNECTED) 0] ls /
 [zookeeper]
 [zk: localhost:2181(CONNECTED) 1] ls /zookeeper
