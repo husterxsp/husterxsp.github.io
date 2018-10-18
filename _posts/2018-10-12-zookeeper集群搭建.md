@@ -213,6 +213,12 @@ Error contacting service. It is probably not running.
 
 
 
+!!! 又遇到了。。。。重启一下虚拟机就ok。。。
+
+另外可以参考 https://blog.csdn.net/cc1949/article/details/78196226
+
+
+
 ```bash
 xushaopeng@ubuntu:/usr/local/zookeeper$ ./bin/zkServer.sh  status
 ZooKeeper JMX enabled by default

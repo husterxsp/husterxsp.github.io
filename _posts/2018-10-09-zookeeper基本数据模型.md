@@ -299,6 +299,12 @@ version No is not valid : /imooc/sec0000000002
 [zk: localhost:2181(CONNECTED) 19] delete /imooc/sec0000000002 1
 ```
 
+如果是删除一个非空节点，delete会报错 Node not empty
+
+
+
+可以用 rmr 命令删除
+
 
 
 ### session 基本原理
