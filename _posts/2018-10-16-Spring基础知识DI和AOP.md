@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring基础知识DI和AOP
+title: spring基础知识DI和AOP
 date: 2018-10-16
 author: "Xsp"
 catalog: true
@@ -354,3 +354,66 @@ pom.xml 配置文件如下：
 ```
 
 
+
+### Spring容器
+
+#### 使用上下文
+
+容器是Spring框架的核心。Spring 容器使用DI管理构成应用的组件，创建组件之间的关联。
+
+
+
+Spring的容器有多个实现，主要有两种：
+
+- bean工厂，最简单的容器，提供基本的DI支持。（beanFactory接口）
+- 应用上下文（ApplicationContext接口），基于beanFactory。提供应用框架级别的服务，如解析属性文件等。常用应用上下文：
+  - AnnotationConfigApplicationContext：从基于java的配置类加载Spring应用上下文。
+  - AnnotationConfigWebApplicationContext：加载Spring Web上下文。
+  - ClassPathXmlApplicationContext：从类路径下的XML配置文件加载上下文。
+  - FileSystemXmlApplicationContext：从文件系统下的XML配置文件加载上下文。
+  - XmlWebApplicationContext：从Web应用下的XML配置文件加载上下文。
+
+
+
+类图如下：
+
+<img src="/img/post/2018-10-16-spring-context.png" style="width:100%;max-width: 700px;text-align:center;display:block;">
+
+```java
+// 在指定的文件系统路径查找xml
+ApplicationContext context = new FileSystemXmlApplicationContext("C:/knight.xml");
+
+// 在所有的类路径查找。什么是类路径？
+ApplicationContext context = new ClassPathXmlApplicationContext("knight.xml");
+
+// 从java配置加载
+ApplicationContext context = new AnnotationConfigApplicationContext("com.springinaction.knights.config.knightConfig.class");
+```
+
+准备好应用上下文，就可以调用上下文的getBean() 方法从容器中获取bean.
+
+
+
+#### bean生命周期
+
+传统的应用，bean不在使用后，由java自动进行垃圾回收。
+
+有点复杂。后续熟悉点了再补充。
+
+
+
+#### Spring 组成
+
+![2018-10-16-spring-overview](/img/post/2018-10-16-spring-overview.png)
+
+
+
+（图片来源：[https://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/overview.html](https://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/overview.html)）
+
+
+
+#### Spring boot
+
+Spring 简化对了编程，Spring boot则致力于简化Spring本身。
+
+通过自动配置技术，消除大部分Spring配置。
