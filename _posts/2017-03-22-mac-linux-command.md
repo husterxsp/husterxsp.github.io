@@ -117,5 +117,9 @@ lsof -i:8080
 
 
 
+### cp
+
+
 
 [更多Linux命令>>](http://www.runoob.com/linux/linux-command-manual.html)
+
